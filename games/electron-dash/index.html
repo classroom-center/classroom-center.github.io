@@ -46,7 +46,7 @@
 	<meta content="Snow Rider 3D" name="author" />
 	<meta content="en-US" name="language" />
 	<link href="/themes/snowrider3dd/rs/css/all.css" rel="stylesheet" type="text/css" />
-	<link href="/themes/snowrider3dd/rs/css/comments-sdk.min.css" rel="stylesheet" type="text/css" />
+	
 	<link href="/themes/snowrider3dd/rs/css/theme.css" rel="stylesheet" type="text/css" />
 	<link href="/themes/snowrider3dd/rs/css/search.css" rel="stylesheet" type="text/css" />
 	<link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -75,6 +75,9 @@
 </head>
 
 <body>
+	<!-- Facebook SDK -->
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
 	<header>
 		<div class="us-menuheader-site">
 			<div class="container" style="padding: 1px;">
@@ -931,7 +934,7 @@
 									space tunnels!</p>
 								<a class="us-sticker" href="/category/adventure-games/">Adventure Games</a>
 								<a class="us-sticker" href="/category/casual-games/">Casual Games</a>
-								<div id="comments-widget" data-apiUrl="https://slopegame-online.com/comments-api" data-slug="electron-dash" data-theme="light"></div>
+								<div class="fb-comments" data-href="https://snowrider3dd.github.io/games/electron-dash" data-width="100%" data-numposts="5"></div>
 							</div>
 						</div>
 					</div>
@@ -1261,7 +1264,6 @@
 		<script src="/themes/snowrider3dd/rs/js/footer.js"></script>
 		<script src="/data/js/search.js"></script>
 		<script src="/themes/snowrider3dd/rs/js/fullscreen.js"></script>
-		<script src="/themes/snowrider3dd/rs/js/comments-sdk.min.js?v1.1"></script>
 	</div>
 </body>
 

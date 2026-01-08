@@ -72,7 +72,6 @@
 	<link rel="stylesheet" type="text/css" href="/themes/snowrider3dd/rs/css/critical.css">
 	<link rel="preload" href="/themes/snowrider3dd/rs/css/all.css" as="style"
 		onload="this.onload=null;this.rel='stylesheet'">
-	<link href="/themes/snowrider3dd/rs/css/comments-sdk.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="/themes/snowrider3dd/rs/css/theme.css">
 	<link rel="stylesheet" type="text/css" href="/themes/snowrider3dd/rs/css/search.css">
 	<link rel="stylesheet" type="text/css" href="/themes/snowrider3dd/rs/css/custom.css">
@@ -97,6 +96,9 @@
 </head>
 
 <body>
+	<!-- Facebook SDK -->
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"></script>
 	<header>
 		<div class="us-menuheader-site">
 			<div class="container" style="padding: 1px;">
@@ -1694,7 +1696,7 @@
 							mountain, and see how long you can survive the ultimate snowboarding challenge.</span></p>
 
 					<a class="us-sticker" href="/category/casual-games">Casual Games</a>
-					<div id="comments-widget" data-apiUrl="https://slopegame-online.com/comments-api" data-slug="snow-rider-3d" data-theme="light"></div>
+					<div class="fb-comments" data-href="https://snowrider3dd.github.io/" data-width="100%" data-numposts="5"></div>
 				</div>
 			</div>
 		</div>
@@ -1721,7 +1723,6 @@
 	<script src="/themes/snowrider3dd/rs/js/footer.js"></script>
 	<script src="/data/js/search.js"></script>
 	<script src="/themes/snowrider3dd/rs/js/fullscreen.js"></script>
-	<script src="/themes/snowrider3dd/rs/js/comments-sdk.min.js?v1.1"></script>
 </body>
 
 </html>
