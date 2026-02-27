@@ -1458,13 +1458,33 @@
 				var btn = document.getElementById('play-now-btn');
 				if (btn) btn.disabled = true;
 
+				// Check adplayer using a small delay to allow async init to finish
+				function tryShowAd() {
+					if (typeof aiptag !== 'undefined' && typeof aiptag.adplayer !== 'undefined') {
+						aiptag.cmd.player.push(function () {
+							aiptag.adplayer.startVideoAd('696ddb8f326b433903536d45/snowrider3dd.github.io_video');
+						});
+					} else {
+						// AdLib not loaded (adblocker / timeout) — go straight to game
+						loadGame();
+					}
+				}
+
+				// Give the async lib up to 2s to initialize before falling back
 				if (typeof aiptag !== 'undefined' && typeof aiptag.adplayer !== 'undefined') {
-					aiptag.cmd.player.push(function () {
-						aiptag.adplayer.startVideoAd('696ddb8f326b433903536d45/snowrider3dd.github.io_video');
-					});
+					tryShowAd();
 				} else {
-					// AdLib not loaded (e.g. blocked by ad-blocker) — go straight to game
-					loadGame();
+					var waited = 0;
+					var waitInterval = setInterval(function () {
+						waited += 100;
+						if (typeof aiptag !== 'undefined' && typeof aiptag.adplayer !== 'undefined') {
+							clearInterval(waitInterval);
+							tryShowAd();
+						} else if (waited >= 2000) {
+							clearInterval(waitInterval);
+							loadGame();
+						}
+					}, 100);
 				}
 			}
 
@@ -1477,8 +1497,12 @@
 					setTimeout(function () { splash.style.display = 'none'; }, 300);
 				}
 				var iframe = document.getElementById('iframehtml5');
-				if (iframe && !iframe.src) {
-					iframe.src = iframe.dataset.src || iframe.getAttribute('data-src');
+				if (iframe) {
+					var gameSrc = iframe.getAttribute('data-src');
+					// Only set if not already pointing to the game URL
+					if (gameSrc && iframe.src !== gameSrc) {
+						iframe.src = gameSrc;
+					}
 				}
 			}
 		</script>
