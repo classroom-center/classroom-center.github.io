@@ -60,20 +60,32 @@
 	</meta>
     <!-- AdinPlay Ads -->
     <script>
-    var aiptag = aiptag || {};
-    aiptag.cmd = aiptag.cmd || [];
+    window.aiptag = window.aiptag || {cmd: []};
     aiptag.cmd.display = aiptag.cmd.display || [];
     aiptag.cmd.player = aiptag.cmd.player || [];
 
-    //CMP tool settings
+    //CMP settings
     aiptag.cmp = {
-        show: true,
         button: true,
         buttonText: "Privacy settings",
         buttonPosition: "bottom-left"
     }
+
+    aiptag.cmd.player.push(function() {
+        aiptag.adplayer = new aipPlayer({
+            AD_WIDTH: 960,
+            AD_HEIGHT: 540,
+            AD_DISPLAY: 'default',
+            LOADING_TEXT: 'loading advertisement',
+            PREROLL_ELEM: function(){ return document.getElementById('videoad'); },
+            AIP_COMPLETE: function(state) {
+                console.log('Video Ad Completed: ' + state);
+                loadGame();
+            }
+        });
+    });
     </script>
-    <script async src="//api.adinplay.com/libs/aiptag/pub/696ddb8f326b433903536d45/snowrider3dd.github.io/tag.min.js"></script>
+    <script async src="https://api.adinplay.com/libs/aiptag/pub/696ddb8f326b433903536d45/snowrider3dd.github.io/tag.min.js"></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ68LNS0CB"></script>
@@ -1438,53 +1450,18 @@
 
 		<!-- AdInPlay Video Ad Logic -->
 		<script>
-			// Initialize aipPlayer once the AdInPlay library is ready (runs once per page load)
-			aiptag.cmd.player.push(function () {
-				aiptag.adplayer = new aipPlayer({
-					AD_WIDTH: 960,
-					AD_HEIGHT: 540,
-					AD_DISPLAY: 'modal-center',
-					LOADING_TEXT: 'loading advertisement',
-					PREROLL_ELEM: function () { return document.getElementById('videoad'); },
-					AIP_COMPLETE: function (evt) {
-						console.log('Video Ad Completed: ' + evt);
-						loadGame();
-					}
-				});
-			});
-
 			// Called when user clicks "Play Now"
 			function startGameWithAd() {
 				var btn = document.getElementById('play-now-btn');
 				if (btn) btn.disabled = true;
 
-				// Check adplayer using a small delay to allow async init to finish
-				function tryShowAd() {
-					if (typeof aiptag !== 'undefined' && typeof aiptag.adplayer !== 'undefined') {
-						aiptag.cmd.player.push(function () {
-							aiptag.adplayer.startVideoAd('696ddb8f326b433903536d45/snowrider3dd.github.io_video');
-						});
-					} else {
-						// AdLib not loaded (adblocker / timeout) — go straight to game
-						loadGame();
-					}
-				}
-
-				// Give the async lib up to 2s to initialize before falling back
 				if (typeof aiptag !== 'undefined' && typeof aiptag.adplayer !== 'undefined') {
-					tryShowAd();
+					aiptag.cmd.player.push(function() {
+						aiptag.adplayer.startVideoAd('snowrider3dd.github.io_preroll');
+					});
 				} else {
-					var waited = 0;
-					var waitInterval = setInterval(function () {
-						waited += 100;
-						if (typeof aiptag !== 'undefined' && typeof aiptag.adplayer !== 'undefined') {
-							clearInterval(waitInterval);
-							tryShowAd();
-						} else if (waited >= 2000) {
-							clearInterval(waitInterval);
-							loadGame();
-						}
-					}, 100);
+					// AdLib not loaded (adblocker / timeout) — go straight to game
+					loadGame();
 				}
 			}
 
@@ -1499,7 +1476,6 @@
 				var iframe = document.getElementById('iframehtml5');
 				if (iframe) {
 					var gameSrc = iframe.getAttribute('data-src');
-					// Only set if not already pointing to the game URL
 					if (gameSrc && iframe.src !== gameSrc) {
 						iframe.src = gameSrc;
 					}
