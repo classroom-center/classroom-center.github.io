@@ -1,5 +1,5 @@
 class GMStorage {
-    constructor(key = 'azgames.io_storage') {
+    constructor(key = 'snowrider3dd_storage') {
         this.key = key;
         this.limit = 24;
         this.arrayFavoritesStorage = [];

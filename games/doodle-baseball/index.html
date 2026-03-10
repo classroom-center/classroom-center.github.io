@@ -58,9 +58,34 @@
 	<link href="css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap" rel="stylesheet" />
 	<link as="style" crossorigin="anonymous" href="css2-1?family=Fredoka+One&amp;display=swap"
 		rel="stylesheet preload prefetch" />
-	<script src="/themes/snowrider3dd/rs/js/gm-storage.js"></script>
+	<script src="/themes/snowrider3dd/rs/js/game-storage.js"></script>
 	<script src="/data/js/migrate-cookie.js"></script>
 	</meta>
+    <!-- AdinPlay Ads -->
+    <script>
+    window.aiptag = window.aiptag || {cmd: []};
+    aiptag.cmd.display = aiptag.cmd.display || [];
+    aiptag.cmd.player = aiptag.cmd.player || [];
+    aiptag.cmp = {
+        button: true,
+        buttonText: "Privacy settings",
+        buttonPosition: "bottom-left"
+    }
+    aiptag.cmd.player.push(function() {
+        aiptag.adplayer = new aipPlayer({
+            AD_WIDTH: 960,
+            AD_HEIGHT: 540,
+            AD_DISPLAY: 'default',
+            LOADING_TEXT: 'loading advertisement',
+            PREROLL_ELEM: function(){ return document.getElementById('videoad'); },
+            AIP_COMPLETE: function(state) {
+                console.log('Video Ad Completed: ' + state);
+                loadGame();
+            }
+        });
+    });
+    </script>
+    <script async src="https://api.adinplay.com/libs/aiptag/pub/696ddb8f326b433903536d45/snowrider3dd.github.io/tag.min.js"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FJ68LNS0CB"></script>
     <script>
@@ -718,7 +743,7 @@
 					<div class="game-middle box-frame">
 						<div class="game-flow" style="padding:0;margin-bottom:0"><iframe allowfullscreen="" border="0"
 								class="iframe-default" frameborder="0" height="485" id="iframehtml5" scrolling="no"
-								src="https://papasgames.onl/play/doodle-baseball/" title="Doodle Baseball" width="100%"></iframe></div>
+								data-src="https://papasgames.onl/play/doodle-baseball/" src="about:blank" title="Doodle Baseball" width="100%"></iframe></div>
 						<div class="game-flow" id="header-game">
 							<div class="header-game">
 								<div class="box-header">
@@ -806,7 +831,7 @@
 								</svg></span>
 						</div>
 
-						<script defer="" src="/data/js/embed-copy.js"></script><!--az games-->
+						<script defer="" src="/data/js/embed-copy.js"></script>
 						<div class="game-show-category">
 							<div class="box-show-category">
 								<div class="us-grid-game">
@@ -1347,6 +1372,7 @@
 		<script src="/themes/snowrider3dd/rs/js/footer.js"></script>
 		<script src="/data/js/search.js"></script>
 		<script src="/themes/snowrider3dd/rs/js/fullscreen.js"></script>
+		<script src="/data/js/scripts.min.js"></script>
 	</div>
 </body>
 
