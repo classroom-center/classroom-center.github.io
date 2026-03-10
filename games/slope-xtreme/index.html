@@ -55,38 +55,9 @@
 	<link href="css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap" rel="stylesheet" />
 	<link as="style" crossorigin="anonymous" href="css2-1?family=Fredoka+One&amp;display=swap"
 		rel="stylesheet preload prefetch" />
-	<script src="/themes/snowrider3dd/rs/js/game-storage.js"></script>
+	<script src="/themes/snowrider3dd/rs/js/gm-storage.js"></script>
 	<script src="/data/js/migrate-cookie.js"></script>
 	</meta>
-    <!-- AdinPlay Ads -->
-    <script>
-    window.aiptag = window.aiptag || {cmd: []};
-    aiptag.cmd.display = aiptag.cmd.display || [];
-    aiptag.cmd.player = aiptag.cmd.player || [];
-
-    //CMP settings
-    aiptag.cmp = {
-        button: true,
-        buttonText: "Privacy settings",
-        buttonPosition: "bottom-left"
-    }
-
-    aiptag.cmd.player.push(function() {
-        aiptag.adplayer = new aipPlayer({
-            AD_WIDTH: 960,
-            AD_HEIGHT: 540,
-            AD_DISPLAY: 'fill',
-            LOADING_TEXT: 'loading advertisement',
-            PREROLL_ELEM: function(){ return document.getElementById('videoad'); },
-            AIP_COMPLETE: function(state) {
-                console.log('Video Ad Completed: ' + state);
-                loadGame();
-            }
-        });
-    });
-    </script>
-    <script async src="https://api.adinplay.com/libs/aiptag/pub/696ddb8f326b433903536d45/snowrider3dd.github.io/tag.min.js"></script>
-
     <!-- AdinPlay Ads -->
     <script>
     window.aiptag = window.aiptag || {cmd: []};
@@ -125,8 +96,6 @@
     
       gtag('config', 'G-FJ68LNS0CB');
     </script>
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9211426283389318"
-     crossorigin="anonymous"></script> -->
     <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9211426283389318"
      crossorigin="anonymous"></script> -->
 
@@ -209,73 +178,6 @@
   ]
 }
 	</script>
-	<style>
-		/* ---------- Splash Screen ---------- */
-		#game-splash-screen {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 10;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			gap: 20px;
-			background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #16213e 100%);
-			border-radius: 4px;
-			overflow: hidden;
-		}
-		#game-splash-screen::before {
-			content: '';
-			position: absolute;
-			inset: 0;
-			background: url('/upload/imgs/slopeextreme.png') center/cover no-repeat;
-			opacity: 0.25;
-			filter: blur(4px);
-		}
-		#game-splash-screen > * {
-			position: relative;
-			z-index: 1;
-		}
-		#game-splash-screen img {
-			width: 140px;
-			height: 140px;
-			object-fit: cover;
-			border-radius: 16px;
-			box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-			border: 3px solid rgba(255,255,255,0.15);
-		}
-		#play-now-btn {
-			padding: 14px 48px;
-			font-size: 20px;
-			font-weight: 700;
-			letter-spacing: 1px;
-			color: #fff;
-			background: linear-gradient(135deg, #e63946, #c1121f);
-			border: none;
-			border-radius: 50px;
-			cursor: pointer;
-			box-shadow: 0 4px 20px rgba(230, 57, 70, 0.5);
-			transition: transform 0.15s ease, box-shadow 0.15s ease;
-			outline: none;
-		}
-		#play-now-btn:hover {
-			transform: scale(1.06);
-			box-shadow: 0 6px 28px rgba(230, 57, 70, 0.7);
-		}
-		#play-now-btn:active {
-			transform: scale(0.97);
-		}
-		/* Ensure the game-flow container is a positioning context */
-		.game-flow[style*="position:relative"] {
-			min-height: 485px;
-		}
-		#videoad {
-		   position: absolute !important;
-		}
-	</style>
 </head>
 
 <body>
@@ -840,16 +742,22 @@
 						</div>
 					</div>
 					<div class="game-middle box-frame">
-						<div class="game-flow" style="padding:0;margin-bottom:0">
+						<div class="game-flow" style="padding:0;margin-bottom:0;position:relative;">
+							<!-- AdInPlay video ad container -->
+							<div id="videoad"></div>
+							<!-- Splash screen overlay -->
+							<div id="game-splash-screen">
+								<img alt="Slope Xtreme" src="https://snowrider3dd.github.io/upload/cache/upload/imgs/slopeextreme.png" />
+								<button id="play-now-btn" onclick="startGameWithAd()">&#9654; Play Now</button>
+							</div>
 							<iframe allowfullscreen="" border="0"
 								class="iframe-default" frameborder="0" height="485" id="iframehtml5" scrolling="no"
-								data-src="https://papasgames.onl/play/slope-xtreme/" src="about:blank" title="Slope Xtreme" width="100%"></iframe>
+								data-src="https://papasgames.onl/play/slope-xtreme/" src="about:blank" title="Slope Xtreme" width="100%"></iframe></div>
 						</div>
 						<div class="game-flow" id="header-game">
 							<div class="header-game">
 								<div class="box-header">
 									<div class="img-thumbnail">
-										<img alt="Slope Xtreme" height="80" src="https://snowrider3dd.github.io/upload/cache/upload/imgs/slopeextreme.png"
 										<img alt="Slope Xtreme" height="80" src="https://snowrider3dd.github.io/upload/cache/upload/imgs/slopeextreme.png"
 											title="Slope Xtreme" width="80" />
 										<h1>Slope Xtreme</h1>
@@ -932,7 +840,7 @@
 								</svg></span>
 						</div>
 
-						<script defer="" src="/data/js/embed-copy.js"></script>
+						<script defer="" src="/data/js/embed-copy.js"></script><!--az games-->
 						<div class="game-show-category">
 							<div class="box-show-category">
 								<div class="us-grid-game">
@@ -1480,4 +1388,3 @@
 </body>
 
 </html>
-
