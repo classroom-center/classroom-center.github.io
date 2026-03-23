@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://snowrider3dd.github.io/sitemap.xml
+Sitemap: https://classroom-center.github.io/sitemap.xml
 
 # Disallow admin and cache directories (if any)
 Disallow: /admin/

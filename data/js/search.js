@@ -31,7 +31,7 @@ function displaySearchResults(results, containerId) {
     const html = results.map(game => `
 				<div class="search-result-item" onclick="navigateToGame('${game.slug}')">
 					<img src="${game.image}" alt="${game.name}" class="search-result-image" 
-						 onerror="this.src='/themes/snowrider3dd/rs/imgs/default-game.png'">
+						 onerror="this.src='/themes/classroom/rs/imgs/default-game.png'">
 					<div class="search-result-info">
 						<div class="search-result-title">${game.name}</div>
 						<div class="search-result-category">${game.category}</div>
