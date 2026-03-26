@@ -34,7 +34,7 @@
                     '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>' +
                 '</button>' +
                 '<a class="site-brand" href="/">' +
-                    '<img alt="Classroom Center" height="38" src="/data/image/logo-snow-rider-3d.webp" />' +
+                    '<img alt="Classroom Center" height="38" src="/data/image/logo.webp" />' +
                 '</a>' +
             '</div>' +
             '<div class="header-center">' +
