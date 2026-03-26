@@ -795,6 +795,103 @@ body {
 }
 
 /* ══════════════════════════════════════════════════════════
+   INFO PAGES (About Us / Contact Us / Privacy / Terms)
+   ══════════════════════════════════════════════════════════ */
+
+/* Content card – override bright blue */
+.full-information {
+    background-color: var(--dark-surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+}
+
+/* Text content area */
+.for-information {
+    color: var(--text-primary) !important;
+}
+
+.for-information h1,
+.home-title {
+    color: var(--text-primary) !important;
+    font-size: 1.6rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.75rem !important;
+    border-bottom: 2px solid var(--border) !important;
+}
+
+.for-information h2,
+.for-information h3,
+.for-information h4 {
+    color: var(--text-primary) !important;
+}
+
+.for-information p,
+.for-information li {
+    color: #b8b8d0 !important;
+    line-height: 1.85 !important;
+}
+
+.for-information a {
+    color: var(--accent) !important;
+}
+.for-information a:hover {
+    color: #a07fff !important;
+    text-decoration: underline !important;
+}
+
+.for-information ul,
+.for-information ol {
+    padding-left: 1.5rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.for-information li {
+    margin-bottom: 0.4rem !important;
+}
+
+/* Contact form inputs */
+.for-information input,
+.for-information textarea,
+.for-information select {
+    background: var(--dark-bg) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    padding: 10px 14px !important;
+}
+.for-information input:focus,
+.for-information textarea:focus {
+    border-color: var(--accent) !important;
+    outline: none !important;
+}
+
+.for-information label {
+    color: var(--text-muted) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    display: block !important;
+    margin-bottom: 6px !important;
+}
+
+/* Submit button */
+.for-information button[type="submit"],
+.for-information .btn-submit {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 10px 28px !important;
+    border-radius: 24px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: background 0.15s !important;
+}
+.for-information button[type="submit"]:hover,
+.for-information .btn-submit:hover {
+    background: #6a4de8 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
    CATEGORY PAGE LAYOUT (dark theme + 157px grid)
    ══════════════════════════════════════════════════════════ */
 
