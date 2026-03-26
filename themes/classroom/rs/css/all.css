@@ -2110,8 +2110,8 @@ footer {
 }
 
 .GameThumbLabel_Trending {
-    background: linear-gradient(90deg, #ffc352, #faff9c);
-    color: #36390d;
+    background: linear-gradient(32deg, #000000, #c94646);
+    color: #ffffff;
 }
 
 .GameThumbLabel_Updated {
