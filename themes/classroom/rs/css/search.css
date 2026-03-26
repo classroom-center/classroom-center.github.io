@@ -6,11 +6,10 @@
 
 .search-results {
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 10px);
     left: 0;
     right: 0;
     width: 100%;
-    max-width: 420px;
     background: #1a1d21;
     border: 1px solid #2a2d31;
     border-radius: 12px;
@@ -131,24 +130,6 @@
     box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2) !important;
 }
 
-@media (max-width: 390px) {
-    .search-results {
-        position: fixed;
-        top: 110px;
-        right: 10px;
-        width: auto;
-        max-width: 300px;
-        margin-left: 90px;
-        max-height: calc(100vh - 90px);
-        border-radius: 14px;
-        z-index: 10000;
-    }
-
-    .container {
-        padding: 5px;
-    }
-}
-
 @media (max-width: 768px) {
     .us-grid-clayover {
         padding: 10px;
@@ -156,68 +137,6 @@
 
     #append-rate {
         display: none;
-    }
-}
-
-@media screen and (min-width: 400px) and (max-width: 430px) {
-    .search-results {
-        position: fixed;
-        top: 110px;
-        right: 10px;
-        width: auto;
-        max-width: 300px;
-        margin-left: 130px;
-        max-height: calc(100vh - 90px);
-        border-radius: 14px;
-        z-index: 10000;
-    }
-
-    .container {
-        padding: 5px;
-    }
-
-    .us-grid-clayover {
-        grid-template-columns: repeat(var(--col));
-    }
-}
-
-@media (min-width: 1900px) {
-    .search-box {
-        position: relative;
-        margin: 0 auto;
-    }
-
-    .search-results {
-        position: absolute;
-        left: 90%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 280px;
-        top: calc(100% + 2px);
-    }
-
-    .container {
-        padding: 5px;
-    }
-}
-
-@media screen and (min-width: 1300px) and (max-width: 1370px) {
-    .search-box {
-        position: relative;
-        margin: 0 auto;
-    }
-
-    .search-results {
-        position: absolute;
-        left: 87%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 280px;
-        top: calc(100% + 2px);
-    }
-
-    .container {
-        padding: 10px;
     }
 }
 

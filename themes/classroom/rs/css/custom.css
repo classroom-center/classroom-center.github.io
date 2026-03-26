@@ -1,3 +1,594 @@
+/* ══════════════════════════════════════════════════════════
+   DARK THEME VARIABLES
+   ══════════════════════════════════════════════════════════ */
+:root {
+    --sidebar-w: 56px;
+    --sidebar-expanded-w: 220px;
+    --header-h: 58px;
+    --dark-bg: #181926;
+    --dark-surface: #21223a;
+    --dark-hover: #2a2c47;
+    --dark-active: #32355c;
+    --accent: #7c5cfc;
+    --text-primary: #e8e8f4;
+    --text-muted: #8888aa;
+    --border: #2a2c47;
+}
+
+/* ══════════════════════════════════════════════════════════
+   GLOBAL DARK BASE
+   ══════════════════════════════════════════════════════════ */
+html {
+    overflow-x: hidden;
+}
+
+html, body {
+    box-sizing: border-box;
+    background: var(--dark-bg) !important;
+    color: var(--text-primary) !important;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    padding-top: var(--header-h) !important;
+    padding-left: var(--sidebar-w) !important;
+    overflow-x: hidden;
+    width: 100%;
+    transition: padding-left 0.25s ease;
+}
+
+/* ══════════════════════════════════════════════════════════
+   TOP HEADER
+   ══════════════════════════════════════════════════════════ */
+.site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: var(--dark-bg);
+    border-bottom: 1px solid var(--border);
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px 0 0;
+    gap: 14px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    min-width: var(--sidebar-w);
+}
+
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    flex-shrink: 0;
+}
+.hamburger-btn:hover { background: var(--dark-hover); color: var(--text-primary); }
+
+.site-brand img { height: 38px; width: auto; display: block; }
+
+.header-center {
+    flex: 1;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.header-search-wrap {
+    position: relative !important;
+    width: 100%;
+}
+
+.header-search-form {
+    display: flex;
+    align-items: center;
+    background: var(--dark-surface);
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    padding: 0 18px;
+    height: 42px;
+    gap: 10px;
+    transition: border-color 0.2s;
+}
+.header-search-form:focus-within { border-color: var(--accent); }
+
+.header-search-icon { color: var(--text-muted); flex-shrink: 0; }
+
+.header-search-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    width: 100%;
+    font-family: inherit;
+}
+.header-search-input::placeholder { color: var(--text-muted); }
+
+/* hide the old submit button inside the repurposed form */
+.header-search-form button[type="submit"] { display: none; }
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.header-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+}
+.header-icon-btn:hover { background: var(--dark-hover); color: var(--text-primary); }
+
+/* Favorites heart button special styling */
+.header-fav-btn {
+    color: #e05c8a !important;
+    width: 42px !important;
+    height: 42px !important;
+    border-radius: 50% !important;
+    border: 2px solid rgba(224,92,138,0.3) !important;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s !important;
+}
+.header-fav-btn:hover {
+    background: rgba(224,92,138,0.15) !important;
+    border-color: rgba(224,92,138,0.7) !important;
+    transform: scale(1.1);
+}
+
+/* ── Search results: anchored inside the form ─────────── */
+.header-search-form {
+    position: relative !important;  /* containing block for the dropdown */
+}
+
+#search-results-desktop {
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #1e2035 !important;
+    border: 1px solid #3a3d6e !important;
+    border-radius: 14px !important;
+    z-index: 3000 !important;
+    overflow: hidden !important;
+    box-shadow: 0 16px 40px rgba(0,0,0,.7) !important;
+}
+
+/* Result items */
+#search-results-desktop .search-result-item {
+    padding: 12px 14px !important;
+    border-bottom: 1px solid #2a2c47 !important;
+    transition: background 0.15s !important;
+}
+#search-results-desktop .search-result-item:hover {
+    background: var(--dark-hover) !important;
+}
+#search-results-desktop .search-result-image {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 8px !important;
+    border-color: #3a3d6e !important;
+}
+#search-results-desktop .search-result-title {
+    color: var(--text-primary) !important;
+    font-size: 14px !important;
+}
+#search-results-desktop .search-result-category {
+    color: var(--accent) !important;
+    font-size: 11px !important;
+}
+#search-results-desktop .search-result-description {
+    display: none !important;
+}
+#search-results-desktop .no-results {
+    color: var(--text-muted) !important;
+    padding: 20px !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LEFT SIDEBAR
+   ══════════════════════════════════════════════════════════ */
+.site-sidebar {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--dark-bg);
+    border-right: 1px solid var(--border);
+    z-index: 1000;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.site-sidebar::-webkit-scrollbar { display: none; }
+
+/* Expand on hover (desktop) or via .expanded class (mobile toggle) */
+@media (min-width: 769px) {
+    .site-sidebar:hover { width: var(--sidebar-expanded-w); }
+}
+.site-sidebar.expanded { width: var(--sidebar-expanded-w) !important; }
+
+.sidebar-inner {
+    width: var(--sidebar-expanded-w);
+    padding: 10px 0 24px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 5;
+    gap: 2px;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 3px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 13.5px;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background 0.15s, color 0.15s;
+}
+.sidebar-item:hover { background: var(--dark-hover); color: var(--text-primary); }
+.sidebar-item.active { background: var(--dark-active); color: var(--text-primary); }
+
+.sidebar-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--dark-surface);
+    transition: background 0.15s;
+}
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item.active .sidebar-icon { background: var(--dark-active); }
+
+.sidebar-icon-img img {
+    width: 24px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.sidebar-label {
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+/* Show labels when sidebar is wide */
+.site-sidebar:hover .sidebar-label,
+.site-sidebar.expanded .sidebar-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 10px 16px;
+}
+
+/* ── Mobile sidebar overlay ─────────────────────────────── */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 999;
+}
+.sidebar-overlay.active { display: block; }
+
+/* ══════════════════════════════════════════════════════════
+   MAIN CONTENT LAYOUT ADJUSTMENTS
+   ══════════════════════════════════════════════════════════ */
+.main-wrapper {
+    background: var(--dark-bg) !important;
+    min-height: calc(100vh - var(--header-h));
+}
+
+.container { max-width: 100% !important; }
+
+/* Category section dark theme */
+.category-section { border-radius: 12px; }
+
+.wiget-title {
+    border-color: var(--border) !important;
+    padding: 10px !important;
+    
+}
+.wiget-title h2, .wiget-title h3 {
+    color: var(--text-primary) !important;
+    font-size: 1.1rem !important;
+}
+.wiget-title img { filter: brightness(1.2); }
+
+/* Footer dark theme */
+.footer {
+    background: var(--dark-bg) !important;
+    border-top: 1px solid var(--border) !important;
+    color: var(--text-muted) !important;
+    margin-top: 2rem !important;
+}
+.footer .link { color: var(--text-muted) !important; }
+.footer .link:hover { color: var(--text-primary) !important; }
+.footer .text-center { color: var(--text-muted) !important; }
+
+/* Hide old header elements that may still be rendered */
+.us-menuheader-site,
+.us-menuheader-list { display: none !important; }
+
+/* ── Favorites-only panel overrides ────────────────────── */
+.favorites-only-panel .mygames__panel--tab { display: none !important; }
+
+.favorites-only-panel {
+    background: #1e1f33 !important;
+    border-left: 1px solid var(--border) !important;
+    box-shadow: -4px 0 24px rgba(0,0,0,.5) !important;
+}
+
+.favorites-only-panel .mygames__panel--header {
+    background: #1e1f33 !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 14px 18px !important;
+}
+
+.favorites-only-panel .mygames__panel--title {
+    color: var(--text-primary) !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.favorites-only-panel .mygames__panel--close {
+    color: var(--text-muted) !important;
+    border-radius: 50% !important;
+    width: 34px !important;
+    height: 34px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background 0.15s, color 0.15s !important;
+}
+.favorites-only-panel .mygames__panel--close:hover {
+    background: var(--dark-hover) !important;
+    color: var(--text-primary) !important;
+}
+
+.favorites-only-panel .mygames__panel--list {
+    background: #1e1f33 !important;
+    padding: 12px !important;
+}
+
+/* Style game thumbs inside favorites panel */
+.favorites-only-panel .tab-layout a {
+    border-radius: 10px !important;
+    overflow: hidden !important;
+}
+
+/* Empty state message */
+#favorites-layout:empty::before {
+    content: "No favorite games yet.\AHeart a game to save it here.";
+    white-space: pre;
+    display: block;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 48px 24px;
+    font-size: 0.92rem;
+    line-height: 1.8;
+}
+
+/* Fixed mobile menu – kept for mobile use */
+.fixed-menu-mobile {
+    background: var(--dark-surface) !important;
+    top: var(--header-h) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+    body {
+        padding-left: 0 !important;
+    }
+    .site-sidebar {
+        transform: translateX(-100%);
+        width: var(--sidebar-expanded-w) !important;
+        transition: transform 0.25s ease, width 0s;
+    }
+    .site-sidebar:hover { width: var(--sidebar-expanded-w) !important; }
+    .site-sidebar.expanded {
+        transform: translateX(0) !important;
+    }
+    .site-sidebar .sidebar-label {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .header-center { max-width: none; }
+    .site-brand img { height: 30px; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   GAME PAGE – CONTROL BAR
+   ══════════════════════════════════════════════════════════ */
+
+/* Wrapper below the iframe */
+#header-game {
+    background: var(--dark-surface) !important;
+    border: 1px solid var(--border) !important;
+    border-top: none !important;
+    border-radius: 0 0 14px 14px !important;
+    padding: 10px 16px !important;
+}
+
+.box-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+}
+
+/* Game thumbnail + title */
+.img-thumbnail {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+.img-thumbnail img {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 10px !important;
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+}
+
+.img-thumbnail h1 {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Star rating – keep compact */
+#append-rate {
+    flex-shrink: 0 !important;
+}
+
+/* Controls row */
+.header-game-extend {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+    margin-left: auto !important;
+}
+
+/* Each icon button */
+.expand-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    padding: 7px 12px !important;
+    border-radius: 20px !important;
+    background: var(--dark-bg) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-muted) !important;
+    cursor: pointer !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    transition: background 0.15s, color 0.15s, border-color 0.15s !important;
+    white-space: nowrap !important;
+    user-select: none !important;
+    text-decoration: none !important;
+}
+
+.expand-btn svg { flex-shrink: 0; }
+
+.expand-btn:hover {
+    background: var(--dark-hover) !important;
+    color: var(--text-primary) !important;
+    border-color: #5a5e90 !important;
+}
+
+/* Like button */
+#likegame { color: #6bb5ff !important; border-color: rgba(107,181,255,.3) !important; }
+#likegame:hover,
+#likegame.active {
+    background: rgba(107,181,255,.15) !important;
+    color: #6bb5ff !important;
+    border-color: #6bb5ff !important;
+}
+#like-number { line-height: 1 !important; color: inherit !important; }
+
+/* Dislike button */
+#dislikegame { color: var(--text-muted) !important; }
+#dislikegame.active {
+    background: rgba(255,120,100,.15) !important;
+    color: #ff7864 !important;
+    border-color: #ff7864 !important;
+}
+
+/* Favorite button */
+.game-fav-btn { color: #e05c8a !important; border-color: rgba(224,92,138,.3) !important; }
+.game-fav-btn:hover { background: rgba(224,92,138,.1) !important; border-color: #e05c8a !important; }
+.game-fav-btn.active {
+    background: rgba(224,92,138,.2) !important;
+    color: #e05c8a !important;
+    border-color: #e05c8a !important;
+}
+.game-fav-btn.active svg { filter: drop-shadow(0 0 4px #e05c8a88); }
+
+/* Report flag */
+#reportGame { color: var(--text-muted) !important; }
+#reportGame:hover { color: #ffcc44 !important; border-color: #ffcc44 !important; }
+
+/* Reload / Theater / Fullscreen */
+#reloadgame:hover,
+#half-fullscreen:hover,
+#expand:hover {
+    color: var(--text-primary) !important;
+    background: var(--dark-hover) !important;
+}
+
+/* iframe area */
+.game-flow .iframe-default {
+    display: block !important;
+    background: #000 !important;
+    border-radius: 14px 14px 0 0 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LEGACY OVERRIDES (keep existing functionality)
+   ══════════════════════════════════════════════════════════ */
 .game__embed-wrapper {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -198,25 +789,151 @@
 }
 
 @media(min-width: 768px) {
-    .overbox-game {
-        gap: 1.5rem;
-    }
-
-    .game-middle.box-frame {
-        width: 70% !important;
-    }
-
-    .game-suggestion.game-box-right {
-        width: 28% !important;
-    }
-
-    .us-grid-clayover-mini {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
     .main-wrapper {
         min-height: 70vh;
     }
+}
+
+/* ══════════════════════════════════════════════════════════
+   CATEGORY PAGE LAYOUT (dark theme + 157px grid)
+   ══════════════════════════════════════════════════════════ */
+
+/* Page title bar */
+.header-wrapper {
+    padding: 18px 4px 12px !important;
+}
+.header-wrapper-title {
+    font-size: 1.4rem !important;
+    font-weight: 800 !important;
+    color: var(--text-primary) !important;
+    margin: 0 !important;
+    letter-spacing: -.02em !important;
+}
+
+/* Category page game grid */
+.us-grid-clayover {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(157px, 1fr)) !important;
+    grid-auto-rows: auto !important;
+    gap: 10px !important;
+    aspect-ratio: unset !important;
+    overflow: visible !important;
+    padding: 4px 0 !important;
+}
+
+/* Game cards: fixed 157×157 */
+.us-grid-clayover .us-grid-game {
+    padding-bottom: 0 !important;
+    height: 157px !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    position: relative !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    background: var(--dark-surface) !important;
+}
+
+.us-grid-clayover .us-game-link {
+    position: absolute !important;
+    inset: 0 !important;
+}
+
+.us-grid-clayover .us-wrap-image {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.us-grid-clayover .us-wrap-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* Load More button */
+.next_page {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 20px auto !important;
+    padding: 10px 32px !important;
+    background: var(--dark-active) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 24px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    transition: background 0.15s, border-color 0.15s !important;
+}
+.next_page:hover {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+/* ── Full-width categories layout ─────────────────────────── */
+.categories-wrapper {
+    width: 100%;
+    padding: 1rem;
+}
+
+.category-section {
+    margin-bottom: 2.2rem;
+}
+
+.category-section .wiget-title {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.category-view-all {
+    color: #2059b0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1.5px solid #2059b0;
+    padding: 3px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+}
+
+.category-view-all:hover {
+    background: #2059b0;
+    color: #fff;
+}
+
+/* ── Categories homepage grid: auto-fill ~157px cards ───── */
+.categories-wrapper .us-grid-clayover-mini {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(157px, 1fr)) !important;
+    grid-auto-rows: auto !important;
+    aspect-ratio: unset !important;
+    overflow: visible !important;
+    gap: 10px !important;
+}
+
+/* Each game card: fixed 157×157 square */
+.categories-wrapper .us-grid-game {
+    padding-bottom: 0 !important;
+    height: 157px !important;
+    width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+}
+
+.categories-wrapper .us-game-link {
+    position: absolute !important;
+    inset: 0 !important;
+}
+
+.categories-wrapper .us-wrap-image {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.categories-wrapper .us-wrap-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
 #rating .text-center {
